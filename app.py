@@ -90,7 +90,7 @@ def submit_order(id):
         f.write(f"{order_id};;;{full_name};;;{phone};;;{address};;;{card_message};;;{id};;;{time_str};;;Active\n")
 
 
-    # إعادة التوجيه لصفحة الشكر
+    
     return redirect(url_for("thankyou", order_id=order_id))
 
 
@@ -192,9 +192,6 @@ def cancel_order(order_id):
 
 # Update Order
 
-
-    # باقي الكود...
-# Update Order
 @app.route('/update_order/<int:order_id>', methods=['GET', 'POST'])
 def update_order(order_id):
     order_data = None

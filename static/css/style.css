@@ -96,18 +96,15 @@ header {
     border:.5rem solid rgba(0, 0, 0, .3); 
 } 
 
-/* --- إخفاء الهامبورجر في الشاشات الكبيرة --- */
 .fa-bars {
     display: none !important;
 }
 
-/* --- إظهار الروابط في الشاشات الكبيرة --- */
 .navbar {
     display: flex;
     gap: 2rem;
 }
 
-/* ==== Media Query للموبايل ==== */ 
 @media screen and (max-width: 768px) {
      /* إخفاء الروابط بشكل افتراضي */ 
      
@@ -134,15 +131,14 @@ header {
     #toggler:checked ~ .navbar {
         max-height: 550px;
     }
-/* ظهور الهامبورجر */ 
 
     .fa-bars { 
         display: block; 
     } 
-/* لما يكون الهامبورجر مفعل */ 
+ 
 .navbar.active { 
     max-height: 300px; 
-    /* عدلي حسب عدد الروابط */
+   
  } 
 
 }
@@ -171,12 +167,11 @@ h1 {
 .home {
     display: flex;
     align-items: center;
-    justify-content: center;        /* عشان المحتوى يبقى في النص كمان */
+    justify-content: center;       
     min-height: 100vh;
     width: 100%;    
     background-image: url(https://img.freepik.com/premium-photo/pink-background-with-flowers-butterflies-it_844897-9219.jpg?semt=ais_hybrid&w=740&q=80);
-    background-size: cover;        /* لو عايزاها تبان كلها */
-    /* أو cover لو عايزاها تملأ الشاشة حتى لو جزء يتقص */
+    background-size: cover;       
     background-position: center;
     background-repeat: no-repeat;
     background-color: #fff;
@@ -901,19 +896,19 @@ h1 {
 }
 
 .success-message {
-    font-size: 20px;       /* حجم أكبر للرسالة */
-    font-weight: 600;       /* خط عريض */
-    margin: 20px 0;         /* مسافة فوق وتحت */
-    padding: 12px 20px;     /* مساحة داخلية كافية */
-    border-radius: 8px;     /* حواف دائرية ناعمة */
-    text-align: center;     /* توسيط النص */
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1); /* ظل خفيف */
+    font-size: 20px;       
+    font-weight: 600;       
+    margin: 20px 0;         
+    padding: 12px 20px;     
+    border-radius: 8px;     
+    text-align: center;     
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1); 
 }
 
-/* لون الخلفية حسب نوع الرسالة */
+
 .success-message.cancelled {
-    color: #a00;                 /* أحمر غامق */
-    background-color: #ffd6d6;   /* أحمر فاتح للخلفية */
+    color: #a00;                 
+    background-color: #ffd6d6;   
     border: 1px solid #a00;
 }
 
@@ -973,8 +968,6 @@ h1 {
     color: #c0392b;
 }
 
-/* ------- Favorites Page Styling ------- */
-
 #favoritesContainer {
     display: flex;
     flex-wrap: wrap;
@@ -983,7 +976,6 @@ h1 {
     padding: 20px 10px;
 }
 
-/* نفس شكل البوكيه اللي في صفحة المنتجات */
 .favorite-box {
     background: #fff;
     padding: 20px;

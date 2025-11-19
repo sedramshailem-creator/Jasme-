@@ -1,8 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-    /* -------------------------------------------------------------
-       1) ORDER — Save last order for 1 hour
-    ------------------------------------------------------------- */
+ 
     const lastOrder = localStorage.getItem("lastOrder");
 
     if (lastOrder) {
@@ -34,9 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    /* -------------------------------------------------------------
-       2) LIKE SYSTEM on product boxes
-    ------------------------------------------------------------- */
+    
     const likeButtons = document.querySelectorAll(".like-btn");
     let likes = JSON.parse(localStorage.getItem("likes")) || [];
 
@@ -61,9 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 
-    /* -------------------------------------------------------------
-       3) FAVORITES PAGE — Build favorites from localStorage only
-    ------------------------------------------------------------- */
+  
     const favoritesContainer = document.getElementById("favoritesContainer");
 
     if (favoritesContainer) {
@@ -84,9 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    /* -------------------------------------------------------------
-       4) Save all product bouquets (only on index page)
-    ------------------------------------------------------------- */
+
     // لو احنا على الصفحة الرئيسية بس
 if (window.location.pathname === "/") {
     const productBouquets = document.querySelectorAll(".bouquet-box");
