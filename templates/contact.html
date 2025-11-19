@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Jasmeé Flowers</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+<header>
+    <a href="{{ url_for('index') }}" class="logo">Jasmeé<span>.</span></a>
+    <input type="checkbox" id="toggler" style="display: none;">
+    <label for="toggler" class="fas fa-bars"></label>
+    
+    <nav class="navbar">
+        <a href="{{ url_for('index') }}#home">home</a>
+        <a href="{{ url_for('index') }}#about">about</a>
+        <a href="{{ url_for('index') }}#products">products</a>
+        <a href="{{ url_for('index') }}#contact">contact</a>
+    </nav>
+
+    <div class="icones">
+        <a href="#" class="fas fa-heart"></a>  
+    </div>
+</header>
+
+<section class="contact" id="contact">
+    <h1 class="heading"><span>Contact</span> Us</h1>
+
+    <div class="row">
+        <form method="POST" action="{{ url_for('contact') }}">
+            <input type="text" name="name" placeholder="Your Name" class="box">
+            <input type="email" name="email" placeholder="Your Email" class="box">
+            <textarea name="message" placeholder="Your Message" class="box" cols="30" rows="10"></textarea>
+            <input type="submit" value="Send Message" class="btn">
+        </form>
+
+        <div class="image">
+            <img src="https://img.freepik.com/premium-vector/vector-image-woman-watering-flowers_1213699-8090.jpg" alt="">
+        </div>
+    </div>
+</section>
+
+</body>
+</html>
+

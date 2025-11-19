@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Order | Jasmeé Flowers</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+<header>
+    <a href="{{ url_for('index') }}" class="logo">Jasmeé<span>.</span></a>
+    <input type="checkbox" id="toggler" style="display: none;">
+    <label for="toggler" class="fas fa-bars"></label>
+    
+    <nav class="navbar">
+        <a href="{{ url_for('index') }}#home">home</a>
+        <a href="{{ url_for('index') }}#about">about</a>
+        <a href="{{ url_for('index') }}#products">products</a>
+        <a href="{{ url_for('index') }}#contact">contact</a>
+    </nav>
+</header>
+
+<section class="update-order-section">
+    <h1 class="heading">Update <span>Your Order</span></h1>
+    <p>Edit your order details below for {{ flower.name }}.</p>
+
+    <div class="update-container">
+        <!-- Flower Info -->
+        <div class="flower-card">
+            <img src="{{ flower.img }}" alt="{{ flower.name }}">
+            <h3>{{ flower.name }}</h3>
+            <p>{{ flower.description }}</p>
+            <div class="price">Price: ${{ flower.price_with_discount() }}</div>
+        </div>
+
+        <!-- Update Form -->
+        <div class="order-form">
+            <form method="POST" action="{{ url_for('update_order', order_id=order_id) }}">
+                <label for="full_name">Full Name:</label>
+                <input type="text" name="full_name" id="full_name" value="{{ name }}" required>
+
+                <label for="phone">Phone Number:</label>
+                <input type="text" name="phone" id="phone" value="{{ phone }}" required>
+
+                <label for="address">Address:</label>
+                <input type="text" name="address" id="address" value="{{ address }}" required>
+
+                <label for="card_message">Card Message:</label>
+                <textarea name="card_message" id="card_message" rows="5">{{ card_message }}</textarea>
+
+                <button type="submit" class="btn">Save Changes</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>
+

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jasmeé Flower Shop</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    
+
+<header>
+    <a href="#" class="logo">Jasmeé<span>.</span></a>
+
+    <input type="checkbox" id="toggler" style="display: none;">
+    <label for="toggler" class="fas fa-bars"></label>
+
+
+    
+    <nav class="navbar">
+        <a href="#home">home</a>
+        <a href="#about">about</a>
+        <a href="#products">products</a>
+        <a href="#contact">contact</a>
+    </nav>
+
+    <div class="icones">
+        <a href="/favorites" class="fas fa-heart" id="headerHeart"></a>
+    </div>
+
+</header>
+<section class="home" id="home">
+      <div class="content">
+          <h3>Fresh Flower</h3>
+          <span>natural & beautiful flowers </span>
+          <p>Each bouquet of our flowers is carefully chosen to tell a story of elegance and delicacy, filling the space with vibrant colors and enchanting scents, allowing you to experience moments of happiness and calmness amidst nature.</p>
+          <a href="#products" class="btn">shop now</a>
+      </div>
+</section>      
+<section class="about" id="about">
+        <h1 class="heading"><span>about </span> us</h1>
+        <div class="content">
+        <h3>why choose <span>Jasmeé</span> Flowers?</h3>
+        <p>At Jasmeé Flower Shop, we go the extra mile to make your floral experience unforgettable.</p>
+        <p>Fresh & Premium Flowers: Only the best blooms handpicked for you.</p>
+        <p> Bouquets: Each arrangement is crafted with creativity and love.</p>
+        <p>Fast & Reliable Delivery: Get your flowers on time, every time.</p> 
+        <p>Affordable Prices: High quality without breaking the bank.</p>
+        <p>Customer Satisfaction: Your happiness is our priority.</p>
+    </div>
+    
+
+</section>
+
+<section id="products" class="products">
+    <h2 class="heading"><span> Jasmeé </span>bouquets</h2>
+
+    <div class="bouquet-container">
+        {% for flower in flowers %}
+
+<div class="bouquet-box" data-id="{{ flower.id }}">
+
+    <img src="{{ flower.img }}" alt="{{ flower.name }}">
+    
+    <h3>{{ flower.name }}</h3>
+    <p>{{ flower.description }}</p>
+
+    <div class="price-and-like">
+        <div class="price">
+            <span class="original-price">${{ flower.price }}</span>
+            <span class="discounted-price">${{ flower.price_with_discount() }}</span>
+        </div>
+
+        <span class="like-btn" data-id="{{ flower.id }}">
+            <i class="fas fa-heart"></i>
+        </span>
+    </div>
+
+    <a href="{{ url_for('order', id=flower.id) }}" class="btn">Order Now</a>
+</div>
+
+
+        {% endfor %}
+    </div>
+
+</section>
+
+<section class="contact" id="contact">
+    <h1 class="heading"> <span> contact </span> us</h1>
+
+    <div class="row">
+      <form method="POST" action="/contact">
+        <input type="text" name="name" placeholder="name" class="box">
+        <input type="email" name="email" placeholder="email" class="box">
+        <input type="tel" name="phone" placeholder="number" class="box">
+        <textarea name="message" class="box" placeholder="message" cols="30" rows="10"></textarea>
+        <input type="submit" value="send message" class="btn">
+      </form>
+
+        
+
+        <div class="image">
+            <img src="https://img.freepik.com/premium-vector/vector-image-woman-watering-flowers_1213699-8090.jpg" alt="">
+        </div>
+    </div>   
+
+</section>
+
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</body>
+</html>

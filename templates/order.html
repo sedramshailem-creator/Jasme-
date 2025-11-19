@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Jasmeé Order</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+<header>
+    <a href="{{ url_for('index') }}" class="logo">Jasmeé<span>.</span></a>
+    <input type="checkbox" id="toggler" style="display: none;">
+    <label for="toggler" class="fas fa-bars"></label>
+    
+    <nav class="navbar">
+        <a href="{{ url_for('index') }}#home">home</a>
+        <a href="{{ url_for('index') }}#about">about</a>
+        <a href="{{ url_for('index') }}#products">products</a>
+        <a href="{{ url_for('index') }}#contact">contact</a>
+    </nav>
+
+    <div class="icones">
+        <a href="#" class="fas fa-heart"></a>
+    </div>
+</header>
+
+<section class="order-section">
+    <h1 class="heading">Your <span>Jasmeé</span> Order</h1>
+
+    <div class="order-container">
+
+        <!-- Flower Info -->
+        <div class="flower-card">
+            <img src="{{ flower.img }}" alt="{{ flower.name }}">
+            <h3>{{ flower.name }}</h3>
+            <p>{{ flower.description }}</p>
+            <div class="price">Price: ${{ flower.price_with_discount() }}</div>
+
+        </div>
+
+        <!-- Order Form -->
+        <div class="order-form">
+            <form method="POST" action="{{ url_for('submit_order', id=flower.id) }}">
+                
+                <label for="full_name">Full Name:</label>
+                <input type="text" name="full_name" id="full_name" placeholder="Your full name" required>
+
+                <label for="phone">Phone Number:</label>
+                <input type="text" name="phone" pattern="[0-9]*" id="phone" placeholder="Your phone number" required>
+                <script>
+                   document.getElementById("phone").addEventListener("input", function () {
+                      this.value = this.value.replace(/[^0-9]/g, "");
+                    });
+                </script>
+
+                <label for="address">Address:</label>
+                <input type="text" name="address" id="address" placeholder="Your address" required>
+
+                <label for="card_message">Card Message:</label>
+                <textarea name="card_message" id="card_message" rows="5" placeholder="Message on the card"></textarea>
+
+                <button type="submit" class="btn">Submit Order</button>
+
+            </form>
+        </div>
+
+    </div>
+</section>
+
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You | Jasmeé Flowers</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+<header>
+    <a href="{{ url_for('index') }}" class="logo">Jasmeé<span>.</span></a>
+    <input type="checkbox" id="toggler" style="display: none;">
+    <label for="toggler" class="fas fa-bars"></label>
+    
+    <nav class="navbar">
+        <a href="{{ url_for('index') }}#home">home</a>
+        <a href="{{ url_for('index') }}#about">about</a>
+        <a href="{{ url_for('index') }}#products">products</a>
+        <a href="{{ url_for('index') }}#contact">contact</a>
+    </nav>
+
+    <div class="icones">
+        <a href="#" class="fas fa-heart"></a>
+    </div>
+</header>
+
+<section class="thankyou-section">
+    <h1 class="heading">Thank <span>You!</span></h1>
+
+    {% if request.args.get('msg') %}
+        <div class="cancel-alert">
+            {{ request.args.get('msg') }}
+        </div>
+    {% endif %}
+
+{% if status.lower() != "cancelled" %}
+
+    {% if remaining_seconds > 0 %}
+        <p class="thank-text highlight">You Can Update Or Cancel Your Order Within 1 Hour.</p>
+        <h2 id="countdown" class="thank-text countdown"></h2>
+    {% else %}
+        <p class="thank-text expired">Time Is Up. You Can No Longer Update Or Cancel This Order.</p>
+    {% endif %}
+
+{% endif %}
+
+
+    <div class="thank-you bouquet-container">
+
+        <div class="order-actions">
+            {% if status.lower() != "cancelled" %}
+                {% if remaining_seconds > 0 %}
+                    <a href="{{ url_for('update_order', order_id=order_id) }}" class="btn">Update Order</a>
+                    <a href="{{ url_for('cancel_order', order_id=order_id) }}" class="btn cancel">Cancel Order</a>
+                {% else %}
+                    <button class="btn" disabled>Update Order (Expired)</button>
+                    <button class="btn" disabled>Cancel Order (Expired)</button>
+                {% endif %}
+            {% endif %}
+        </div>
+
+        <div class="flower-card">
+            <img src="{{ flower.img }}" alt="{{ flower.name }}">
+            <h3>{{ flower.name }}</h3>
+            <p>{{ flower.description }}</p>
+            <div class="price">Final Price: ${{ flower.price_with_discount() }}</div>
+        </div>
+
+    </div>
+</section>
+
+
+<script>
+    let remaining = Number("{{ remaining_seconds }}");
+
+    function formatTime(sec) {
+        let m = Math.floor(sec / 60);
+        let s = sec % 60;
+        return `${m}m ${s < 10 ? "0"+s : s}s`;
+    }
+
+    if (remaining > 0) {
+        const countdownElement = document.getElementById("countdown");
+        countdownElement.innerText = "Time left: " + formatTime(remaining);
+
+        const timer = setInterval(() => {
+            remaining--;
+            countdownElement.innerText = "Time left: " + formatTime(remaining);
+
+            if (remaining <= 0) {
+                clearInterval(timer);
+                location.reload();
+            }
+        }, 1000);
+    }
+</script>
+
+
+
+
+
+</body>
+</html>
