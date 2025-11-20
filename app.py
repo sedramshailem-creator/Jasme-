@@ -140,15 +140,19 @@ def contact():
     if request.method == "POST":
         name = request.form.get("name", "")
         email = request.form.get("email", "")
-        message = request.form.get("message", "")
+        phone = request.form.get("phone", "")
         message = request.form.get("message", "").strip()
 
-        if not name or not email or not message:
+        if not name or not email or not phone or not message:
             return render_template("contact.html", error="Please fill in all fields")
-
-        # نخزن البيانات في ملف
         with open("messages.txt", "a", encoding="utf-8") as f:
-            f.write(f"Name: {name}\nEmail: {email}\nMessage: {message}\n---\n")
+                f.write(
+                    f"Name: {name}\n"
+                    f"Email: {email}\n"
+                    f"Phone: {phone}\n"
+                    f"Message: {message}\n"
+                    f"---\n"
+                 )
 
         return render_template("contact.html", success=True)
 

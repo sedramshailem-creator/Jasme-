@@ -33,6 +33,7 @@
         <form method="POST" action="{{ url_for('contact') }}">
             <input type="text" name="name" placeholder="Your Name" class="box">
             <input type="email" name="email" placeholder="Your Email" class="box">
+            <input type="tel" name="phone" placeholder="Your Number" class="box">
             <textarea name="message" placeholder="Your Message" class="box" cols="30" rows="10"></textarea>
             <input type="submit" value="Send Message" class="btn">
         </form>
