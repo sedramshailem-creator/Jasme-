@@ -10,9 +10,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const now = new Date();
         const diffHours = (now - orderTime) / 1000 / 60 / 60;
 
-        if (diffHours >= 1) {
-            localStorage.removeItem("lastOrder");
-        }
     }
 
     const orderForm = document.querySelector(".order-form form");
